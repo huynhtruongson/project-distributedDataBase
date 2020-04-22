@@ -1,0 +1,24 @@
+extends ./navigation
+block content
+  h2 Nhập Điểm Sinh Viên
+  if err
+    div(class="alert alert-danger",style="width:80%;margin:auto;margin-top:10px")= err
+  form.mt-5(action="/diem/nhapdiem/postnhapdiem",method="POST",style="width :80%;margin:auto;z-index:0;")
+    input(type="hidden",name="masvDiemUpdate",value= masvUpdateDiem ? masvUpdateDiem :'')
+    .form-row
+      .form-group.col-md-4
+        label(for='inputMaSV') MASV
+        input#inputMaSV.form-control(type='text',name="masv",required,value= masv ? masv : masvUpdateDiem)
+      .form-group.col-md-4
+        label(for='inputMonHoc') MonHoc
+        select#inputMonHoc.form-control(name="mamonhoc",required)
+          option(value='') Choose...
+          each monhoc in monhocs
+            option(value=monhoc.MAMH)= monhoc.TENMH
+      .form-group.col-md-2
+        label(for='inputLan1') DiemLan 1
+        input#inputLan1.form-control(type='text',name="diem1",required)
+      .form-group.col-md-2
+        label(for='inputLan2') DiemLan 2
+        input#inputLan2.form-control(type='text',name="diem2")
+    button(class="btn btn-primary m-auto",type="submit") Submit

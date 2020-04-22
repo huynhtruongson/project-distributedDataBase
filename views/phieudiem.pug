@@ -1,0 +1,28 @@
+extends ./navigation.pug
+block content
+  h2 Phiếu Điểm
+  form.mt-5(action="/diem/phieudiem/search",method = "GET",class="d-flex",style="width : 300px")
+    input(id="inputText" type="text",name ="masv",class="form-control",
+    style="width : 250px",placeholder="Mã sinh viên . . .",required)
+    button(class="btn btn-primary ml-2") Search
+  if(student)
+    p
+      span
+        b MaSV : 
+      span.mr-5= student.MASV
+      span
+        b Ho&Ten : 
+      span= student.HO + student.TEN
+  else
+    h2 Không Tìm Thấy Sinh Viên !    
+  if(infos)
+    table.table
+        tr  
+          th MaMonHoc
+          th TenMonHoc
+          th Diem
+        each info in infos
+          tr
+            td= info.MAMH
+            td= info.TENMH
+            td= info.DIEM

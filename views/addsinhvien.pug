@@ -1,0 +1,60 @@
+extends ./navigation
+block content
+  h2 Thêm Sinh Viên
+  if err
+    div(class="alert alert-danger",style="width:80%;margin:auto;margin-top:10px")= err
+  form.mt-5(action="/addsinhvien",method="POST",style="width :80%;margin:auto;z-index:0;")
+    input(type="hidden",name="masvUpdate",value= student ? student.MASV : '')
+    .form-row
+      .form-group.col-md-4
+        label(for='inputMaSV') MaSV
+        input#inputMaSV.form-control(type='text',name="masv",value= student ? student.MASV : '',required)
+      .form-group.col-md-4
+        label(for='inputHo') Ho
+        input#inputHo.form-control(type='text',name="ho",value= student ? student.HO : '',required)
+      .form-group.col-md-4
+        label(for='inputTen') Ten
+        input#inputTen.form-control(type='text',name="ten",value= student ? student.TEN : '',required)
+    .form-row
+      .form-group.col-md-4
+        label(for='inputMaLop') MaLop
+        input#inputMaLop.form-control(type='text',name="malop",value= student ? student.MALOP : '',required)
+      .form-group.col-md-4
+        label(for='inputGioiTinh') Gioi Tinh
+        select#inputGioiTinh.form-control(name="phai",required)
+          option(value='') Choose...
+          if(student)
+            if(student.PHAI)
+              option(value=0) Nu
+              option(value=1 selected) Nam
+            else
+              option(value=0 selected) Nu
+              option(value=1) Nam
+          else  
+            option(value=0) Nu
+            option(value=1) Nam
+      .form-group.col-md-4
+        label(for='inputNgaySinh') Ngay Sinh
+        input#inputNgaySinh.form-control(type='date',name="ngaysinh",value=student ? student.NGAYSINH :'',required)
+    .form-row
+      .form-group.col-md-4
+        label(for='inputNoiSinh') Noi Sinh
+        input#inputNoiSinh.form-control(type='text',name="noisinh",value= student ? student.NOISINH : '',required)
+      .form-group.col-md-4
+        label(for='inputDiaChi') Dia Chi
+        input#inputDiaChi.form-control(type='text',name="diachi",value= student ? student.DIACHI : '',required)
+      .form-group.col-md-4
+        label(for='inputNghiHoc') Nghi Hoc
+        select#inputNghiHoc.form-control(name="nghihoc",required)
+          option(value='') Choose...
+          if student
+            if(student.NGHIHOC)
+              option(value=0) Không
+              option(value=1 selected) Có
+            else 
+              option(value=0 selected) Không
+              option(value=1) Có
+          else
+            option(value=0) Không
+            option(value=1) Có
+    button(class="btn btn-primary m-auto",type="submit") Submit

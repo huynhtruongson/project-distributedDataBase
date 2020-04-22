@@ -1,0 +1,22 @@
+html
+    head
+      link(rel="stylesheet",href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh",crossorigin="anonymous")
+      link(rel="stylesheet",type="text/css",href="/css/login.css")
+    if errs
+      div(class="alert alert-danger",style="width:450px;margin : 0 auto;margin-top : 15px")= errs 
+    body
+      form(action="/login",method="POST")
+        h2 Welcome
+        div.input
+            label(for="username") Username
+            input#username(type="text",name="username",class="form-control",required,value= username ? username :'') 
+        div.input
+            label(for="pwd") Password
+            input#pwd(type="password",name="pwd",class="form-control",required)
+        div.input
+          label(for="server") Server
+          select#server(class="form-control",name="server")
+            option(value="SONDEV\\MSSQLSERVER1") MSSQLSERVER1
+            option(value="SONDEV\\MSSQLSERVER2") MSSQLSERVER2
+            option(value="SONDEV\\MSSQLSERVER3") MSSQLSERVER3
+        button(class="btn btn-primary",style="margin-top : 15px") Login

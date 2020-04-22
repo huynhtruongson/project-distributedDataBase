@@ -1,0 +1,49 @@
+extends ./navigation
+block content
+  h2 Bảng Điểm
+  form.mt-5(action="/diem/bangdiem/search",method = "GET",class="d-flex",style="width :800px")
+    //- input(id="inputText" type="text",name ="name",class="form-control",style="width : 250px")
+    select.custom-select.mr-sm-2(name="malop",required)
+      option(value='') Lớp
+      each lop in lops
+        option(value=lop.MALOP)= lop.TENLOP
+    select.custom-select.mr-sm-2(name="mamonhoc",required)
+      option(value='') Môn Học
+      each monhoc in monhocs
+        option(value=monhoc.MAMH)= monhoc.TENMH
+    select.custom-select.mr-sm-2(name="lan",required)
+      option(value='') Lần
+      option(value=1) Lần 1
+      option(value=2) Lần 2
+    button(class="btn btn-primary ml-2") Search
+  if(currentInfo)
+    p
+      span
+        b Lop : 
+      span.mr-5= currentInfo.lop
+      span
+        b Monhoc : 
+      span.mr-5= currentInfo.monhoc
+      span
+        b Lan : 
+      span= currentInfo.lan
+  if(students)
+    table.table
+      tr  
+        th MASV
+        th Ho
+        th Ten
+        th MaLop
+        th MaMonHoc
+        th Diem
+        th(style ="text-align:center") Action
+      each student in students
+        tr
+          td= student.MASV
+          td= student.HO
+          td= student.TEN
+          td= student.MALOP
+          td= student.MAMH
+          td= student.DIEM
+          td(style="text-align:center")
+                  a.btn.btn-primary(href="/diem/bangdiem/update/"+student.MASV) Edit

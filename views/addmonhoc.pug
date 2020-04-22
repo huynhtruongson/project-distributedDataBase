@@ -1,0 +1,15 @@
+extends ./navigation.pug
+block content
+  h2 Thêm Môn Học
+  if err
+    div(class="alert alert-danger",style="width:80%;margin:auto;margin-top:10px")= err
+  form.mt-5(action="/monhoc/addmonhoc",method="POST",style="width :80%;margin:auto;z-index:0;")
+    input(type="hidden",name="mamhUpdate",value= monhoc ? monhoc.MAMH : '')
+    .form-row
+      .form-group.col-md-6
+        label(for='inputMaMH') Ma Mon Hoc
+        input#inputMaMH.form-control(type='text',name="mamh",value= monhoc ? monhoc.MAMH : '',required)
+      .form-group.col-md-6
+        label(for='inputTenMH') Ten Mon Hoc
+        input#inputTenMH.form-control(type='text',name="tenmh",value= monhoc ? monhoc.TENMH : '',required)
+    button(class="btn btn-primary",type="submit") Submit

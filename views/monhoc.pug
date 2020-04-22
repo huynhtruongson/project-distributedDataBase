@@ -1,0 +1,14 @@
+extends ./navigation
+block content
+  h2 Danh Sách Môn Học
+  table.table
+    tr
+      th MaMonHoc
+      th TenMonHoc
+      th(style ="text-align:center") Action
+    each monhoc in monhocs
+      tr
+        td= monhoc.MAMH
+        td= monhoc.TENMH
+        td(style="text-align:center")
+          a.btn.btn-primary(href="/monhoc/update/"+monhoc.MAMH) Edit

@@ -1,0 +1,16 @@
+extends ./navigation
+block content
+  h2 Danh Sách Lớp
+  table.table
+    tr
+      th MaLop
+      th TenLop
+      th MaKhoa
+      th(style ="text-align:center") Action
+    each lop in lops
+      tr
+        td= lop.MALOP
+        td= lop.TENLOP
+        td= lop.MAKH
+        td(style="text-align:center")
+          a.btn.btn-primary(href="/lop/update/"+lop.MALOP) Edit 

@@ -1,0 +1,23 @@
+extends ./navigation
+block link
+  link(rel="stylesheet",type="text/css",href="/css/login.css")
+block content
+  if errs
+    div(class="alert alert-danger",style="width:450px;margin : 0 auto;margin-top : 15px")= errs
+  if success
+    div(class="alert alert-success",style="width:450px;margin : 0 auto;margin-top : 15px")= success  
+  form(action="/create",method="POST")
+    h2 Tạo Tài Khoản
+    div.input
+        label(for="username") Username
+        input#username(type="text",name="username",class="form-control",required) 
+    div.input
+        label(for="pwd") Password
+        input#pwd(type="password",name="pwd",class="form-control",required)
+    div.input
+      label(for="role") Role
+      select#role(class="form-control",name="role",required)
+        option(value="PGV") PGV
+        option(value="KHOA_X") KHOA
+        option(value="USER") USER
+    button(class="btn btn-primary",style="margin-top : 15px") Create

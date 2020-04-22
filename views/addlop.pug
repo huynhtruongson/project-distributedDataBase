@@ -1,0 +1,19 @@
+extends ./navigation.pug
+block content
+  h2 Thêm Lớp
+  if err
+    div(class="alert alert-danger",style="width:80%;margin:auto;margin-top:10px")= err
+  form.mt-5(action="/lop/addlop",method="POST",style="width :80%;margin:auto;z-index:0;")
+    input(type="hidden",name="malopUpdate",value= lop ? lop.MALOP : '')
+    .form-row
+      .form-group.col-md-4
+        label(for='inputMaLop') Ma Lop
+        input#inputMaLop.form-control(type='text',name="malop",value= lop ? lop.MALOP : '',required)
+      .form-group.col-md-4
+        label(for='inputTenLop') Ten Lop
+        input#inputTenLop.form-control(type='text',name="tenlop",value= lop ? lop.TENLOP : '',required)
+      .form-group.col-md-4
+        label(for='inputMaKH') Ma Khoa
+        input#inputMaKH.form-control(type='text',name="makh",placeholder=makhoa ? makhoa : '',
+        value= lop ? lop.MAKH : '',required)
+    button(class="btn btn-primary",type="submit") Submit

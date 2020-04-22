@@ -1,0 +1,48 @@
+html
+    head
+        link(rel="stylesheet",href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh",crossorigin="anonymous")
+        link(rel="stylesheet",type="text/css",href="/css/navigation.css")
+        block link
+    body
+        nav(class="navbar navbar-expand-lg navbar-light bg-light")
+            a(class="navbar-brand",href="#")
+                img(src="/imgs/tdtLogo.png",width="35",height="35",alt="")
+            div(class="collapse navbar-collapse")
+                ul(class="navbar-nav mr-auto")
+                    li(class="nav-item active")
+                        a(class="nav-link",href="#") Sinh Viên
+                        ul.sub-menu.navbar-nav(style="width : 150px")
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/") DanhSach SV
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/addsinhvien") Thêm SV
+                    li(class="nav-item active")
+                        a(class="nav-link",href="#") Lớp
+                        ul.sub-menu.navbar-nav(style="width : 155px")
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/lop") DanhSach Lop
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/lop/addlop") Thêm Lop
+                    li(class="nav-item active")
+                        a(class="nav-link",href="#") Môn học
+                        ul.sub-menu.navbar-nav(style="width : 155px")
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/monhoc") DanhSach MH
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/monhoc/addmonhoc") Thêm MH
+                    li(class="nav-item active")
+                        a(class="nav-link",href="#") Điểm Sinh Viên
+                        ul.sub-menu.navbar-nav
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/diem/nhapdiem") Nhập Điểm
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/diem/bangdiem") Bảng Điểm
+                            li(class="nav-item active")
+                                a(class="nav-link",href="/diem/phieudiem") Phiếu Điểm
+                            li(class="nav-item active")
+                                a(class="nav-link",href="#") Bảng Điểm TK
+            a.endNav(href="/create") Tạo TK
+            a.endNav.ml-5(href="/logout") Đăng xuất
+        .container
+            block content
+        block script

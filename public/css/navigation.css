@@ -1,0 +1,38 @@
+body nav  {
+  font-size: 1.2em;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1.5px;
+  box-shadow: .8px .8px 10px rgba(231, 19, 19, 0.4)
+}
+body nav ul>li>a:hover {
+  text-shadow: .8px .8px red;
+}
+body nav ul>li {
+  margin-right: 10px;
+  position: relative;
+}
+body nav a.endNav {
+  text-decoration: none;
+  color:black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body nav a.endNav:hover {
+  text-shadow: .8px .8px red;
+}
+body nav ul>li>ul.sub-menu {
+  display: none;
+  position: absolute;
+  background-color:white;
+}
+body nav ul>li:hover ul.sub-menu {
+  display: block;
+  box-shadow: .8px .8px 10px rgba(231, 19, 19, 0.4);
+  z-index: 1;
+}
+h2 {
+  text-align:center;
+  margin-top:15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 550;
+  text-shadow: .8px .8px 2px rgba(231, 19, 19, 0.4)
+}
