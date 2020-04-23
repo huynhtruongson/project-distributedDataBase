@@ -1,0 +1,26 @@
+extends ./navigation.pug
+block content
+  h2 Bảng Điểm Tổng Kết
+  form.mt-5(action="/diem/bangdiemTK/search",method = "GET",class="d-flex",style="width : 300px")
+    select#inputMonHoc.form-control(name="malop",required)
+          option(value='') Lớp . . .
+          each lop in lops
+            option(value=lop.MALOP)= lop.TENLOP
+    button(class="btn btn-primary ml-2") Search
+  if(currentLop)
+    p
+      span
+        b Lop : 
+      span= currentLop.TENLOP   
+  if(students)
+    table.table
+        tr  
+          th MaSV-HoTen
+          each monhoc in monhocs
+            th= monhoc.TENMH
+        each student in students
+            tr
+              if(student.MASV)
+                td= student.MASV + "--" + student.HO + " " +student.TEN
+                each monhoc in monhocs
+                  td= student[monhoc.MAMH]

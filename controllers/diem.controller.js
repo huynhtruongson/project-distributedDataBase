@@ -110,6 +110,7 @@ module.exports.searchLopandMonHoc =  function(req,res) {
 }
 
 module.exports.nhapdiemSV = function(req,res) {
+  const conn = res.locals.conn
   conn.connect(async function(err) {
     if(err)
       console.log(err)
@@ -189,6 +190,47 @@ module.exports.updateDiem = function(req,res) {
     let masvUpdateDiem = req.params.MASV
     res.render('nhapdiemSV',{monhocs : monhocs.recordset,
                             masvUpdateDiem : masvUpdateDiem})
+    conn.close()
+  })
+}
+
+module.exports.bangdiemTK = (req,res) => {
+  const conn = res.locals.conn
+  conn.connect(async function(err) {
+    if(err)
+      console.log(err)
+    let request = new sql.Request(conn)
+    let lops = await request.query('select * from LOP')
+    res.render('bangdiemTK',{lops :lops.recordset})
+    conn.close()
+  })
+}
+module.exports.searchBangDiemTK = (req,res) => {
+  const conn = res.locals.conn
+  conn.connect(async function(err) {
+    if(err)
+      console.log(err)
+    let request = new sql.Request(conn)
+    let currentLop = await request.query(`select * from LOP where MALOP = '${req.query.malop.trim()}'`)
+    let lops = await request.query('select * from LOP')
+    let monhocs = await request.query('select * from MONHOC')
+    let students = await request.query(`select MASV from SINHVIEN where MALOP = '${req.query.malop.trim()}'`)
+    let arrDiem = await request.query(`select SINHVIEN.MASV,SINHVIEN.HO,SINHVIEN.TEN,DIEM.MAMH,MAX(DIEM) as DIEM
+    from DIEM,SINHVIEN
+    where DIEM.MASV = SINHVIEN.MASV AND SINHVIEN.MALOP = '${req.query.malop.trim()}'
+    group by DIEM.MASV,SINHVIEN.HO,SINHVIEN.TEN,SINHVIEN.MASV,DIEM.MAMH`)
+    students = students.recordset
+    .map(x => arrDiem.recordset.filter(t => t.MASV === x.MASV)
+    .reduce((a,b) => {
+      a.MASV = b.MASV
+      a.HO = b.HO
+      a.TEN = b.TEN
+      a[b.MAMH] = b.DIEM
+      return a
+    },{}))
+    res.render('bangdiemTK',{lops : lops.recordset,currentLop : currentLop.recordset[0],
+      monhocs : monhocs.recordset,
+      students : students})
     conn.close()
   })
 }
